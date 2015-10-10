@@ -1,6 +1,6 @@
 # evergreen
 ======
-Java Concurrent Persistent Memory Mapped Objects (one object per file)
+Java Inter-Process Persistent Memory Mapped Objects
 
 ### Features implemented
 * Uses memory mapped files (MMF);

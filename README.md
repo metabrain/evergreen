@@ -35,7 +35,9 @@ Integer newSavedInt = val.getAndPut((oldInt) -> oldInt+1))
 * Understand better the values for sizes of headers in Java objects in order to avoid overestimating it.
 * Add support for multiple concurrent readers (no locking when reading) but prevent writer starvation. 
 
-###  PERFORMANCE
+------------------
+
+###  Performance
 As measured on a Intel Core i3-4370 @ 3.8GHz (2 cores, 4 local threads) running 8GB DDR3, an 256GB Samsung SSD and Windows 8.
 * 4 threads concurrently incrementing an Evergreen\<Integer\> 1000000 times each count using CAS mechanism, total of 4000000 operations. 
 

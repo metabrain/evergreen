@@ -39,32 +39,35 @@ Integer newSavedInt = val.getAndPut((oldInt) -> oldInt+1))
 As measured on a Intel Core i3-4370 @ 3.8GHz (2 cores, 4 local threads) running 8GB DDR3, an 256GB Samsung SSD and Windows 8.
 * 4 threads concurrently incrementing an Evergreen\<Integer\> 1000000 times each count using CAS mechanism, total of 4000000 operations. 
 
-##### LATENCY (repeatSimpleMapTestManyTimesInParallelOnSameFileCASLatencyTest)
+##### LATENCY 
+* (from repeatSimpleMapTestManyTimesInParallelOnSameFileCASLatencyTest)
+* Considered only the latency of last 200000 operations per sample 
 
-| Sample | Average latency (of last 200000 ops per sample) |
+| Sample | Average latency (ns) | Average latency (μs) | Average latency (ms) |
 | :----- | :----------------- |
-| 0 | 27783ns / 27μs / 0.028ms |
-| 1 | 23021ns / 23μs / 0.023ms |
-| 2 | 21361ns / 21μs / 0.021ms |
-| 3 | 23293ns / 23μs / 0.023ms |
-| 4 | 16913ns / 16μs / 0.016ms |
-| 5 | 23473ns / 23μs / 0.023ms |
-| 6 | 25268ns / 25μs / 0.025ms |
-| 7 | 16133ns / 16μs / 0.016ms |
-| 8 | 16892ns / 16μs / 0.017ms |
-| 9 | 23752ns / 23μs / 0.024ms |
+| 0 | 27783ns | 27μs | 0.028ms |
+| 1 | 23021ns | 23μs | 0.023ms |
+| 2 | 21361ns | 21μs | 0.021ms |
+| 3 | 23293ns | 23μs | 0.023ms |
+| 4 | 16913ns | 16μs | 0.016ms |
+| 5 | 23473ns | 23μs | 0.023ms |
+| 6 | 25268ns | 25μs | 0.025ms |
+| 7 | 16133ns | 16μs | 0.016ms |
+| 8 | 16892ns | 16μs | 0.017ms |
+| 9 | 23752ns | 23μs | 0.024ms |
 
-##### THROUGHPUT (repeatSimpleMapTestManyTimesInParallelOnSameFileCASThroughputTest)
-| Sample | Average throughput (ops per second)|
+##### THROUGHPUT (avg. ~145k ops per second)
+* (from repeatSimpleMapTestManyTimesInParallelOnSameFileCASThroughputTest)
+| Sample | Average throughput|
 | :----- | :----------------- |
-| 0 | 135218 |
-| 1 | 155025 |
-| 2 | 153028 |
-| 3 | 155471 |
-| 4 | 146322 |
-| 5 | 148351 |
-| 6 | 155572 |
-| 7 | 156512 |
-| 8 | 151032 |
-| 9 | 146619 |
+| 0 | 135218 ops per second |
+| 1 | 155025 ops per second |
+| 2 | 153028 ops per second |
+| 3 | 155471 ops per second |
+| 4 | 146322 ops per second |
+| 5 | 148351 ops per second |
+| 6 | 155572 ops per second |
+| 7 | 156512 ops per second |
+| 8 | 151032 ops per second |
+| 9 | 146619 ops per second |
 

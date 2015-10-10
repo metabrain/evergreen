@@ -39,7 +39,7 @@ Integer newSavedInt = val.getAndPut((oldInt) -> oldInt+1))
 As measured on a Intel Core i3-4370 @ 3.8GHz (2 cores, 4 local threads) running 8GB DDR3, an 256GB Samsung SSD and Windows 8.
 * 4 threads concurrently incrementing an Evergreen\<Integer\> 1000000 times each count using CAS mechanism, total of 4000000 operations. 
 
-##### LATENCY 
+##### LATENCY (avg. ~23μs per getAndPut operation)
 * (from repeatSimpleMapTestManyTimesInParallelOnSameFileCASLatencyTest)
 * Considered only the latency of last 200000 operations per sample 
 

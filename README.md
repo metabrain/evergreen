@@ -4,16 +4,16 @@ Java Concurrent Persistent Memory Mapped Objects (one object per file)
 
 ### Features implemented
 * Uses memory mapped files (MMF);
-* Thread safe Evergreen<T extends Serializable> object;
-* Safe when accessed across multiple JVMs (by using lock bits at the target MMF);
-* Low latency (but nowhere as near to OpenHFT chronicle-map I suspect);
+* Thread safe Evergreen\<T extends Serializable\> object;
+* Saved instance in the file is safe to read/write when accessed across multiple JVMs (by using lock bits at the target MMF);
+* Low latency (but nowhere as near to OpenHFT's chronicle-map I suspect);
 * Support for CAS-like operations in the MMF by specifying lambda functions;
 
 ### Example of usage
 
 ```java
 String fname = "/tmp/evergreen-integer.test"
-Evergreen\<Integer\> val = EvergreenFactory.create(fname, 4, () -> 0);
+Evergreen<Integer> val = EvergreenFactory.create(fname, 4, () -> 0);
 
 // Returns the current value as currently available in memory-mapped file.
 Integer savedInt = val.get()
@@ -37,31 +37,34 @@ Integer newSavedInt = val.getAndPut((oldInt) -> oldInt+1))
 
 ###  PERFORMANCE
 As measured on a Intel Core i3-4370 @ 3.8GHz (2 cores, 4 local threads) running 8GB DDR3, an 256GB Samsung SSD and Windows 8.
+* 4 threads concurrently incrementing an Evergreen\<Integer\> 1000000 times each count using CAS mechanism, total of 4000000 operations. 
 
-##### LATENCY
-* 4 threads concurrently incrementing an Evergreen<Integer> 1000000 times each count using CAS mechanism, total of 4000000 operations. (repeatSimpleMapTestManyTimesInParallelOnSameFileCASLatencyTest)
+##### LATENCY (repeatSimpleMapTestManyTimesInParallelOnSameFileCASLatencyTest)
 
-Sample 0 : Average latency of last 200000 operations done: 27783ns / 27μs / 0.028ms
-Sample 1 : Average latency of last 200000 operations done: 23021ns / 23μs / 0.023ms
-Sample 2 : Average latency of last 200000 operations done: 21361ns / 21μs / 0.021ms
-Sample 3 : Average latency of last 200000 operations done: 23293ns / 23μs / 0.023ms
-Sample 4 : Average latency of last 200000 operations done: 16913ns / 16μs / 0.016ms
-Sample 5 : Average latency of last 200000 operations done: 23473ns / 23μs / 0.023ms
-Sample 6 : Average latency of last 200000 operations done: 25268ns / 25μs / 0.025ms
-Sample 7 : Average latency of last 200000 operations done: 16133ns / 16μs / 0.016ms
-Sample 8 : Average latency of last 200000 operations done: 16892ns / 16μs / 0.017ms
-Sample 9 : Average latency of last 200000 operations done: 23752ns / 23μs / 0.024ms
+| Sample | Average latency (of last 200000 ops per sample) |
+| :----- | :----------------- |
+| 0 | 27783ns / 27μs / 0.028ms |
+| 1 | 23021ns / 23μs / 0.023ms |
+| 2 | 21361ns / 21μs / 0.021ms |
+| 3 | 23293ns / 23μs / 0.023ms |
+| 4 | 16913ns / 16μs / 0.016ms |
+| 5 | 23473ns / 23μs / 0.023ms |
+| 6 | 25268ns / 25μs / 0.025ms |
+| 7 | 16133ns / 16μs / 0.016ms |
+| 8 | 16892ns / 16μs / 0.017ms |
+| 9 | 23752ns / 23μs / 0.024ms |
 
-##### THROUGHPUT
-* 4 threads concurrently incrementing an Evergreen<Integer> 1000000 times each count using CAS mechanism, total of 4000000 operations. (repeatSimpleMapTestManyTimesInParallelOnSameFileCASThroughputTest)
-Sample 0 : Average throughput of 135218 ops per seconds
-Sample 1 : Average throughput of 155025 ops per seconds
-Sample 2 : Average throughput of 153028 ops per seconds
-Sample 3 : Average throughput of 155471 ops per seconds
-Sample 4 : Average throughput of 146322 ops per seconds
-Sample 5 : Average throughput of 148351 ops per seconds
-Sample 6 : Average throughput of 155572 ops per seconds
-Sample 7 : Average throughput of 156512 ops per seconds
-Sample 8 : Average throughput of 151032 ops per seconds
-Sample 9 : Average throughput of 146619 ops per seconds
+##### THROUGHPUT (repeatSimpleMapTestManyTimesInParallelOnSameFileCASThroughputTest)
+| Sample | Average throughput (ops per second)|
+| :----- | :----------------- |
+| 0 | 135218 |
+| 1 | 155025 |
+| 2 | 153028 |
+| 3 | 155471 |
+| 4 | 146322 |
+| 5 | 148351 |
+| 6 | 155572 |
+| 7 | 156512 |
+| 8 | 151032 |
+| 9 | 146619 |
 

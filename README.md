@@ -58,7 +58,7 @@ As measured on a Intel Core i3-4370 @ 3.8GHz (2 cores, 4 local threads) running 
 
 ##### THROUGHPUT (avg. ~145k ops per second)
 * (from repeatSimpleMapTestManyTimesInParallelOnSameFileCASThroughputTest)
-| Sample | Average throughput|
+| Sample | Average throughput |
 | :----- | :----------------- |
 | 0 | 135218 ops per second |
 | 1 | 155025 ops per second |

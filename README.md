@@ -29,6 +29,7 @@ Integer newSavedInt = val.getAndPut((oldInt) -> oldInt+1))
 ```
 
 ### Things that would be nice to add in the future if possible (TODO)
+* Deploy artifact to Sonatype OSSRH so it can be included as a dependency in pom.xml.
 * No garbage generating implementation. (to be fair, I don't know how much garbage is currently generated).
 * Add support for forceClearLock() (in the case a JVM crashes while a file is locked, which would render it un-unlockable without forcing).
 * Allow users to specify mroe complex (and faster) serialization mechanisms.

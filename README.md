@@ -44,7 +44,7 @@ As measured on a Intel Core i3-4370 @ 3.8GHz (2 cores, 4 local threads) running 
 * Considered only the latency of last 200000 operations per sample 
 
 | Sample | Average latency (ns) | Average latency (μs) | Average latency (ms) |
-| :----- | :----------------- |
+| :----- | :----------------- | :----------------- | :----------------- |
 | 0 | 27783ns | 27μs | 0.028ms |
 | 1 | 23021ns | 23μs | 0.023ms |
 | 2 | 21361ns | 21μs | 0.021ms |
